@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u07.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <h3>初识vue组件</h3>
+    <div id="vue-app-one">
+        <to-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></to-item>
+    </div>
+    <div id="vue-app-two">
+        <greet></greet>
+    </div>
+    <!-- <script src="../js/u11.js"></script>    -->
+    <script>
+        //初识vue组件
+        Vue.component("greet", {
+            template: `
+    <p>大家好，我是{{name}}好人你信吗？
+    <button v-on:click="changename">改名</button>
+    </p>
+    `,
+            data: function () {
+                return {
+                    name: "路函"
+                }
+            },
+            methods: {
+                changename: function () {
+                    this.name = "Herry";
+                },
+                ceshi: function () {
+                    return "哈罗"
+                }
+            }
+        })
+
+        Vue.component("to-item", {
+            props: ['todo'],
+            template: `<li>{{todo.id+1}}---{{ todo.text }}</li>`,
+        })
+
+
+        new Vue({
+            el: '#vue-app-one',
+            data: {
+                groceryList: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其它什么人吃的东西' }
+                ]
+            }
+        })
+
+        new Vue({
+            el: '#vue-app-two',
+        })
+    </script>
+</body>
+
+</html>

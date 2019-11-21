@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u07.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <h3>初始化多个vue实例对象</h3>
+    <div id="vue-app-one">
+        {{title}}
+        <p>{{greet}}</p>
+    </div>
+    <div id="vue-app-two">
+        {{title}}
+        <p>{{greet}}</p>
+        <button v-on:click="changetitle">改app one</button>
+    </div>
+    <!-- <script src="../js/u10.js"></script>    -->
+    <script>
+        //实例化多vue对象
+        var one = new Vue({
+            el: '#vue-app-one',
+            data: {
+                title: "app one内容"
+            },
+            methods: {
+            },
+            computed: {
+                greet: function () {
+                    return 'hello app one'
+                }
+            }
+        })
+
+        var two = new Vue({
+            el: '#vue-app-two',
+            data: {
+                title: "app two内容"
+            },
+            methods: {
+                changetitle: function () {
+                    one.title = "已经改名了"
+                }
+            },
+            computed: {
+                greet: function () {
+                    return 'hello app two'
+                }
+            }
+        })
+
+        two.title = "最原先的变化"
+    </script>
+</body>
+
+</html>

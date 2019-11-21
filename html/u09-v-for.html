@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u07.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <h1>v-for 循环</h1>
+        <!-- 数组下标 -->
+        {{chars[0]}}
+        {{chars[1]}}
+        {{chars[2]}}
+
+        <!-- 数组遍历 -->
+        <ul>
+            <li v-for="char in chars">
+                {{char}}
+            </li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(user,index) in users">
+                {{index+1}} . {{user.name}}---{{user.age}}
+            </li>
+        </ul>
+
+        <!-- 遍历div -->
+        <!-- <div v-for="(user,index) in users">
+            <h3>{{index}}.{{user.name}}</h3>
+            <p>{{user.age}}</p>
+        </div> -->
+
+        <!-- 使用template遍历不会创建多个div -->
+        <template v-for="(user,index) in users">
+            <h3>{{index}}.{{user.name}}</h3>
+            <p>{{user.age}}</p>
+        </template>
+
+        <template v-for="(user,index) in users">
+            <div v-for="(val,key) in user">
+                <p>{{key}}--{{val}}</p>
+            </div>
+        </template>
+
+
+    </div>
+    <!-- <script src="../js/u09.js"></script>    -->
+    <script>
+        //v-for
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                chars: ['liyy', 'bbtyn', 'kiso'],
+                users: [
+                    { name: "hery", age: 25 },
+                    { name: "backy", age: 30 },
+                    { name: "nolly", age: 20 },
+                ]
+            },
+            methods: {
+            },
+            computed: {
+            }
+        })
+    </script>
+</body>
+
+</html>

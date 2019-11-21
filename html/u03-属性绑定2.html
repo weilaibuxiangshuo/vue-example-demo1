@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u03.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <h1>Event</h1>
+        <button v-on:click.once="add(1)">涨一岁</button>
+        <button v-on:click="reduce(1)">减一岁</button>
+        <button v-on:dblclick="add(1)">双击涨一岁</button>
+        <button v-on:dblclick="reduce(1)">双击减一岁</button>
+        <button v-on:click="add(10)">涨十岁</button>
+        <button v-on:click="reduce(10)">减十岁</button>
+        <p>My age is {{age}}</p>
+        <div id="canvas" v-on:mousemove="updateXY">
+            {{x}},{{y}}--<span v-on:mousemove.stop="">Stop Moving</span>
+        </div>
+        <a v-on:click.prevent="alert()" href="http://www.baidu.com">hello world</a>
+    </div>
+    <!-- <script src="../js/u03.js"></script>    -->
+    <script>
+        //属性绑定
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                age: 30,
+                x: 0,
+                y: 0,
+            },
+            methods: {
+                add: function (obj) {
+                    this.age += obj
+                },
+                reduce: function (obj) {
+                    this.age -= obj
+                },
+                updateXY: function (event) {
+                    // console.log(event);
+                    this.x = event.offsetX;
+                    this.y = event.offsetY;
+                },
+                stopmouse: function (event) {
+                    event.stopPropagation()
+                },
+                alert: function () {
+                    alert('hello world')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

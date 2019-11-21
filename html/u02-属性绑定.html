@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <p><span>{{name}}</span></p>
+        <p><span>{{world}}</span></p>
+        <p><span>{{greet('我想测试一下')}}</span></p>
+        <a v-bind:href="webhref">web开发</a>
+        <input type="text" v-bind:value="name">
+        <div v-bind:name="newname">看一下情况</div>
+        <p v-html="websitetag"></p>
+    </div>
+    <!-- <script src="../js/u02.js"></script>    -->
+    <script>
+        //属性绑定
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                name: '管理员',
+                world: '工作是就是一天再过一天',
+                webhref: 'http://www.baidu.com',
+                newname: '世界中瞄准',
+                websitetag: '<a href="http://qq.com">qq</a>'
+            },
+            methods: {
+                greet: function (obj) {
+                    return '百度每一天' + obj + this.name
+                }
+            }
+        })
+
+        /*
+        el:element 需要获取取的元素，一定是html中的根据容器元素
+        data:用于数据的存储
+        methods:用于存储各种方法
+        data-binding:给属性绑定对应的值
+        */
+    </script>
+</body>
+
+</html>

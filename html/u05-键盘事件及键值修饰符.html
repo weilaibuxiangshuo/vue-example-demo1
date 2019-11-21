@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u03.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <h1>键盘 Event</h1>
+        <label for="">姓名：</label>
+        <input type="text" v-on:keyup.enter='logname' v-model="name">
+        <p>{{name}}</p>
+        <label for="">年龄：</label>
+        <input type="text" v-on:keyup.alt.enter='logage'>
+    </div>
+    <!-- <script src="../js/u05.js"></script>    -->
+    <script>
+        //键盘事件及键值修饰符
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                name: "",
+                age: "",
+            },
+            methods: {
+                logname: function () {
+                    console.log('你正在输入你的名字：' + this.name)
+                },
+                logage: function () {
+                    console.log('你正在输入你的年龄：')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u07.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <h1>v-if 条件</h1>
+        <button v-on:click="error=!error">显示toggle error</button>
+        <button v-on:click="sucess=!sucess">显示toggle sucess</button>
+        <!-- <p v-if="error">网络连接错误404</p>
+        <p v-else-if="sucess">网络连接成功200</p> -->
+        <p v-show="error">网络连接错误404</p>
+        <p v-show="sucess">网络连接成功200</p>
+    </div>
+    <!-- <script src="../js/u08.js"></script>    -->
+    <script>
+        //v-if
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                error: false,
+                sucess: false,
+            },
+            methods: {
+            },
+            computed: {
+            }
+        })
+    </script>
+</body>
+
+</html>

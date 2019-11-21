@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/u03.css">
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <h1>Computed 计算属性</h1>
+        <button v-on:click="a++">Add to A</button>
+        <button v-on:click="b++">Add to B</button>
+        <p>A - {{a}}</p>
+        <p>B - {{b}}</p>
+        <p>Age + A ={{addtoa}}</p>
+        <p>Age + B ={{addtob}}</p>
+    </div>
+    <!-- <script src="../js/u06.js"></script>    -->
+    <script>
+        //计算属性computed
+        //只有耗时或者进行大量操作的时候，才会使用计算属性，其它时候使用methods
+        var app = new Vue({
+            el: '#vue-app',
+            data: {
+                age: 20,
+                a: 0,
+                b: 0,
+            },
+            methods: {
+                /*         addtoa:function(){
+                            console.log("Add to A")
+                            return this.a+this.age
+                        },
+                        addtob:function(){
+                            console.log("Add to B")
+                            return this.b+this.age
+                        } */
+            },
+            computed: {
+                addtoa: function () {
+                    console.log("Add to A")
+                    return this.a + this.age
+                },
+                addtob: function () {
+                    console.log("Add to B")
+                    return this.b + this.age
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
