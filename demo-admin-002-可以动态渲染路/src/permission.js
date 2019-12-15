@@ -23,33 +23,38 @@ router.beforeEach(async (to, from, next) => {
 
   if (hasToken) {
     if (to.path === '/login') {
+      
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
       try {
+        // console.log('login上面的topath',to.path)
+        // console.log('login执行了几次',store.getters.routers.length)
+        // console.log('login执行了几次',store.getters.routers)
         if (store.getters.addRouters.length===0) {
-          // get user info
-          console.log("获取权限")
-          store.dispatch('user/ceshishow111').then(() => {
-            console.log('store.getters')
+          // console.log('login上面的topath',to.path)
+          store.dispatch('permissions/ceshishow111').then(() => {
             router.addRoutes(store.getters.addRouters)
             router.options.routes = store.getters.routers
-            console.log(router.options.routes, '入会费入会费')
-            console.log(store.getters.routers, '入会费入会费2')
-            // console.log(to.path,'跳那里')
-            // next()
           })
-          // store.dispatch('user/ceshishow111')
-          // router.addRoutes(store.getters.addRouters)
-          // router.options.routes=store.getters.routers
-          // router.options.routes.push({
-          //   path:"/hello",component:() => import('@/views/form/index')
-          // })
-          // console.log(router.options.routes,'入会费入会费')
-          // console.log(store.getters.routers,'入会费入会费2')
-          console.log('88888')
-          console.log(to.path,'跳那里')
+          // let temp01=[
+          //   {
+          //     path: '/',
+          //     component: Layout,
+          //     redirect: '/adminhome',
+          //     children: [
+          //       {
+          //         path: 'adminhome',
+          //         name: 'Adminhome',
+          //         component: () => import('@/views/dashboard/index'),
+          //         meta: { title: 'adminhome', icon: 'dashboard',permission:['m1-m2'] },
+          //       },          
+          //     ]
+          //   }
+          // ]
+          // router.addRoutes(temp01)
+          // next(to)
           next()
         }else(
           next()

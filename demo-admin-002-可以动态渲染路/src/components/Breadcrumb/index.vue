@@ -33,12 +33,14 @@ export default {
       const first = matched[0]
 
       if (!this.isDashboard(first)) {
+        // console.log(first,'route1')
         matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
       }
-
+      // console.log(matched[1].meta.breadcrumb,'matched[0]')
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     },
     isDashboard(route) {
+      // console.log(route,'route')
       const name = route && route.name
       if (!name) {
         return false

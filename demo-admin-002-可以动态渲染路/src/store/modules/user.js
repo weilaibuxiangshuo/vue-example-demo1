@@ -1,18 +1,16 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { resetRouter } from '@/router'
-import router from '../../router/index'
+import { resetRouter,asyncCeshiRoutes } from '@/router'
+import router from '@/store'
 import Layout from '@/layout'
-import {constantRoutes} from '../../router'
-import store from '..'
+import { constantRoutes } from '../../router'
+import store from '../index'
 
 // import router from './router'
 const state = {
   token: getToken(),
   name: '',
   avatar: '',
-  routers: constantRoutes,
-  addRouters:[],
 }
 
 const mutations = {
@@ -25,10 +23,7 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_ROUTERS:(state,routers)=>{
-    state.addRouters=routers
-    state.routers=constantRoutes.concat(routers)
-  }
+
 }
 
 const actions = {
@@ -73,64 +68,22 @@ const actions = {
 
   // user logout
   logout({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        removeToken()
-        resetRouter()
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
+    commit('SET_TOKEN', '')
+    removeToken()
+    router.getters.routers
+    // return new Promise((resolve, reject) => {
+    //   // logout(state.token).then(() => {
+    //   //   commit('SET_TOKEN', '')
+    //   //   removeToken()
+    //   //   resetRouter()
+    //   //   resolve()
+    //   // }).catch(error => {
+    //   //   reject(error)
+    //   // })
+    // })
   },
 
-  ceshishow111({commit}) {
-    let _temp=[
-      {
-        path: '/form',
-        component: Layout,
-        children: [
-          {
-            path: 'index',
-            name: 'Form',
-            component: () => import('@/views/form/index'),
-            meta: { title: 'Form', icon: 'form' }
-          }
-        ]
-      },
-      {
-        path: '/',
-        component: Layout,
-        redirect: '/dashboard',
-        children: [{
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: () => import('@/views/dashboard/index'),
-          meta: { title: 'Dashboard', icon: 'dashboard' }
-        }]
-      },
-    ]
-    commit('SET_ROUTERS',_temp)
-    console.log("stor里的调用")
 
-
-    // router.addRoutes(router.options.routes)
-    // router.addRoutes([
-    //   {
-    //     path: '/',
-    //     component: Layout,
-    //     redirect: '/dashboard',
-    //     children: [{
-    //       path: 'dashboard',
-    //       name: 'Dashboard',
-    //       component: () => import('@/views/dashboard/index'),
-    //       meta: { title: 'Dashboard', icon: 'dashboard' }
-    //     }]
-    //   },
-    //   { path: '*', redirect: '/404', hidden: true }
-    // ])
-  },
 
 
   // remove token
@@ -142,6 +95,9 @@ const actions = {
     })
   }
 }
+
+
+
 
 export default {
   namespaced: true,

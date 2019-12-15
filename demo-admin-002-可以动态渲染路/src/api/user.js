@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-
+import { removeToken } from '@/utils/auth'
 export function login(data) {
   return request({
     url: '/api/login/',
@@ -26,7 +26,7 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/user/logout',
+    url: '/api/logout/',
     method: 'post'
   })
 }
